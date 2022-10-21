@@ -16,7 +16,7 @@ hdfs namenode -format -force
 start-dfs.sh
 
 # Wait for HDFS services to be up and running
-sleep 5
+sleep 100
 
 # Create a tmp directory and make it accessible to everyone
 hadoop fs -mkdir -p /tmp

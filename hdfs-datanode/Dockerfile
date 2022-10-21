@@ -7,4 +7,4 @@ COPY scripts /usr/bin/.
 
 #ENTRYPOINT ["/usr/bin/bootstrap.sh"]
 
-RUN ["chmod", "+x", "/usr/bin/bootstrap.sh"]
+ENTRYPOINT ["chmod", "+x", "/usr/bin/bootstrap.sh"]

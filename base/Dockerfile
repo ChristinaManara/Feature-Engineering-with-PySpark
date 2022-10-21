@@ -9,7 +9,7 @@ RUN \
     apt-get -y upgrade && \
     apt-get install -y build-essential && \
     apt-get install -y software-properties-common && \
-    apt-get install -y vim curl git htop man unzip wget && \
+    apt-get install -y byobu curl git htop man unzip vim wget && \
     apt-get install -y openssh-server sshpass && \
     rm -rf /var/lib/apt/lists/*
 
