@@ -9,7 +9,7 @@ RUN \
     apt-get -y upgrade && \
     apt-get install -y build-essential && \
     apt-get install -y software-properties-common && \
-    apt-get install -y curl git htop man unzip wget && \
+    apt-get install -y vim curl git htop man unzip wget && \
     apt-get install -y openssh-server sshpass && \
     rm -rf /var/lib/apt/lists/*
 
@@ -45,27 +45,36 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
 RUN export JAVA_HOME
 
 # Download latest Hadoop package
-ADD http://apache.mirrors.tds.net/hadoop/common/hadoop-3.3.4/hadoop-3.3.4.tar.gz /tmp/
+ADD https://archive.apache.org/dist/hadoop/common/hadoop-3.3.4/hadoop-3.3.4.tar.gz  /tmp/
 
 # Create /opt directory
 RUN mkdir -p /opt/
 
 # Unpack hadoop into /opt/ and set HADOOP_HOME
-RUN tar -xzf /tmp/hadoop-2.6.0.tar.gz -C /opt/
+RUN tar -xzf /tmp/hadoop-3.3.4.tar.gz -C /opt/
 
 # Copy hadoop confs
-ADD /config_hadoop /opt/hadoop-2.6.0/etc/hadoop/
+ADD /config_hadoop /opt/hadoop-3.3.4/etc/hadoop/
 
 # Set Hadoop sepcific environment variables
-ENV HADOOP_HOME /opt/hadoop-2.6.0
+ENV HADOOP_HOME /opt/hadoop-3.3.4
 ENV HADOOP_CONF_DIR="${HADOOP_HOME}/etc/hadoop"
 ENV HADOOP_LIBEXEC_DIR="${HADOOP_HOME}/libexec"
 
-RUN sed -i 's/export JAVA_HOME=${JAVA_HOME}/export JAVA_HOME=\/usr\/lib\/jvm\/java-8-oracle/' /opt/hadoop-2.6.0/etc/hadoop/hadoop-env.sh
+RUN sed -i 's/export JAVA_HOME=${JAVA_HOME}/export JAVA_HOME=\/usr\/lib\/jvm\/java-8-oracle/' /opt/hadoop-3.3.4/etc/hadoop/hadoop-env.sh
 
 RUN mkdir -p /opt/data/apps/tmp
 RUN mkdir -p /opt/data/apps/dfs/name
 RUN mkdir -p /opt/data/apps/dfs/data
+
+# Hdfs ports
+EXPOSE 50010 50020 50070 50075 50090 8020 9000
+
+# Mapred ports
+EXPOSE 19888
+
+# Yarn ports
+EXPOSE 8030 8031 8032 8033 8040 8042 8088
 
 # Expose port 22
 EXPOSE 22
