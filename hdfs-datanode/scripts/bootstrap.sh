@@ -15,5 +15,5 @@ hadoop-daemon.sh start datanode
 
 # Run in daemon mode, don't exit
 while true; do
-  sleep 100;
+  sleep 10000;
 done

@@ -1,0 +1,27 @@
+version: "2.4"
+services:
+  # Container that runs HDFS NameNode and DataNode services
+  hdfs-namenode:
+    image: hdfs-namenode
+    hostname: hdfs-namenode-host
+    ports:
+      # HDFS port
+      - "9000:9000"
+      # HDFS NameNode WebUI
+      - "50070:50070"
+    # Adjust according to the resources available on host machine
+    cpu_shares: 3000
+    mem_limit: 2g
+
+  # Container that runs HDFS DataNode service
+  hdfs-datanode:
+    image: hdfs-datanode
+    hostname: hdfs-datanode-host
+    links:
+      - hdfs-namenode
+    environment:
+      # NAMENODE_HOSTNAME is the hostname of the container running Namenode service
+      - NAMENODE_HOSTNAME=hdfs-namenode-host
+    # Adjust according to the resources available on host machine
+    cpu_shares: 3000
+    mem_limit: 2g

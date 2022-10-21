@@ -24,5 +24,5 @@ hadoop fs -chmod -R 777 /tmp
 
 # Run in daemon mode, don't exit
 while true; do
-  sleep 100;
+  sleep 10000;
 done
