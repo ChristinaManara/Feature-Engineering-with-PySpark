@@ -26,4 +26,7 @@ RUN sed -i 's/#   StrictHostKeyChecking ask/StrictHostKeyChecking no/' /etc/ssh/
 # SSH login fix
 RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
 
+# Expose port 22
+EXPOSE 22
+
 
