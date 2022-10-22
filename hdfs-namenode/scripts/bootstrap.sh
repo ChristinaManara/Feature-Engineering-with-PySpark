@@ -16,13 +16,16 @@ hdfs namenode -format -force
 start-dfs.sh
 
 # Wait for HDFS services to be up and running
-sleep 100
+#sleep 1000
 
 # Create a tmp directory and make it accessible to everyone
 hadoop fs -mkdir -p /tmp
-hadoop fs -chmod -R 777 /tmp
+hadoop fs -chmod -R 755 /tmp
+
+Wait
 
 # Run in daemon mode, don't exit
 while true; do
   sleep 10000;
 done
+

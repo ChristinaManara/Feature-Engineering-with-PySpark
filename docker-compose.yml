@@ -1,4 +1,4 @@
-version: "2.4"
+version: "2.12"
 services:
   # Container that runs HDFS NameNode and DataNode services
   hdfs-namenode:
@@ -12,6 +12,8 @@ services:
     # Adjust according to the resources available on host machine
     cpu_shares: 3000
     mem_limit: 2g
+    stdin_open: true
+    tty: true
 
   # Container that runs HDFS DataNode service
   hdfs-datanode:

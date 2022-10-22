@@ -5,6 +5,7 @@ LABEL Maintainer="christinamanara2@gmail.com"
 
 # Install.
 RUN \
+    sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list && \
     apt-get update && \
     apt-get -y upgrade && \
     apt-get install -y build-essential && \
@@ -67,6 +68,9 @@ RUN mkdir -p /opt/data/apps/tmp
 RUN mkdir -p /opt/data/apps/dfs/name
 RUN mkdir -p /opt/data/apps/dfs/data
 
+
+RUN ssh-keygen -f /root/.ssh/id_rsa -t rsa -N ''
+
 # Hdfs ports
 EXPOSE 50010 50020 50070 50075 50090 8020 9000
 
@@ -78,5 +82,6 @@ EXPOSE 8030 8031 8032 8033 8040 8042 8088
 
 # Expose port 22
 EXPOSE 22
+
 
 
