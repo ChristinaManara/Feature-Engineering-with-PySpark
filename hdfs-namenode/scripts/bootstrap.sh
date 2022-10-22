@@ -4,14 +4,14 @@
 service ssh restart
 
 # Setup password less ssh
-sshpass -p screencast ssh-copy-id root@localhost
+sshpass -p screencast ssh-copy-id -i ~/.ssh/id_rsa.pub root@localhost
 
 export HOSTNAME=`hostname`
 sed -i "s#localhost#$HOSTNAME#g" /opt/hadoop-3.3.4/etc/hadoop/core-site.xml
 
-#Set HADOOP_HOME
+# Set HADOOP_HOME
 export HADOOP_HOME=/opt/hadoop-3.3.4
-#Set JAVA_HOME
+# Set JAVA_HOME
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
 # Add bin/ directory of Hadoop to PATH
 export PATH=$PATH:$HADOOP_HOME/bin

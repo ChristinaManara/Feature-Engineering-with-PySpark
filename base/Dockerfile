@@ -14,27 +14,22 @@ RUN \
     apt-get install -y openssh-server sshpass && \
     rm -rf /var/lib/apt/lists/*
 
-# Establish the operating directory of OpenSSH
 RUN mkdir /var/run/sshd
-
-# # Set Root password
-# RUN echo 'root:screencast' | chpasswd
-
-# # Allow Root login
-# RUN sed -i 's/#\?PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
-# RUN sed -i 's/#   StrictHostKeyChecking ask/StrictHostKeyChecking no/' /etc/ssh/ssh_config
-
-# # SSH login fix
-# RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
-
-RUN echo 'root:root' | chpasswd
-RUN sed -i 's/#\?PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+RUN echo 'root:screencast' | chpasswd
+RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+RUN sed -i 's/#   StrictHostKeyChecking ask/StrictHostKeyChecking no/' /etc/ssh/ssh_config
 
 # SSH login fix. Otherwise user is kicked off after login
 RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
 
-ENV NOTVISIBLE "in users profile"
-RUN echo "export VISIBLE=now" >> /etc/profile
+# RUN echo 'root:root' | chpasswd
+# RUN sed -i 's/#\?PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+
+# # SSH login fix. Otherwise user is kicked off after login
+# RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
+
+# ENV NOTVISIBLE "in users profile"
+# RUN echo "export VISIBLE=now" >> /etc/profile
 
 # Set environment variables.
 ENV HOME /root
@@ -74,6 +69,7 @@ ENV HADOOP_HOME /opt/hadoop-3.3.4
 ENV HADOOP_CONF_DIR="${HADOOP_HOME}/etc/hadoop"
 ENV HADOOP_LIBEXEC_DIR="${HADOOP_HOME}/libexec"
 
+COPY /config_hadoop/hadoop-env.sh /etc/hadoop/
 RUN sed -i 's/export JAVA_HOME=${JAVA_HOME}/export JAVA_HOME=\/usr\/lib\/jvm\/java-8-oracle/' /opt/hadoop-3.3.4/etc/hadoop/hadoop-env.sh
 
 RUN mkdir -p /opt/data/apps/tmp
@@ -82,10 +78,11 @@ RUN mkdir -p /opt/data/apps/dfs/data
 
 ENV PATH $PATH:${HADOOP_HOME}/sbin/
 
+#RUN ssh-keygen -q -t rsa -N '' -f /id_rsa
 RUN ssh-keygen -f /root/.ssh/id_rsa -t rsa -N ''
 
 # Hdfs ports
-EXPOSE 50010 50020 50070 50075 50090 8020 9000
+EXPOSE 50010 50020 50070 50075 50090 8020 9000 9870
 
 # Mapred ports
 EXPOSE 19888
@@ -96,4 +93,7 @@ EXPOSE 8030 8031 8032 8033 8040 8042 8088
 # Expose port 22
 EXPOSE 22
 
-CMD ["/usr/sbin/sshd", "-D"]
+#Other ports
+EXPOSE 49707 2122
+
+#CMD ["/usr/sbin/sshd", "-D"]9870:9870
