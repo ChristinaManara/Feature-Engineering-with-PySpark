@@ -17,15 +17,27 @@ RUN \
 # Establish the operating directory of OpenSSH
 RUN mkdir /var/run/sshd
 
-# Set Root password
-RUN echo 'root:screencast' | chpasswd
+# # Set Root password
+# RUN echo 'root:screencast' | chpasswd
 
-# Allow Root login
-RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
-RUN sed -i 's/#   StrictHostKeyChecking ask/StrictHostKeyChecking no/' /etc/ssh/ssh_config
+# # Allow Root login
+# RUN sed -i 's/#\?PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+# RUN sed -i 's/#   StrictHostKeyChecking ask/StrictHostKeyChecking no/' /etc/ssh/ssh_config
 
-# SSH login fix
+# # SSH login fix
+# RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
+
+RUN echo 'root:root' | chpasswd
+RUN sed -i 's/#\?PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+
+# SSH login fix. Otherwise user is kicked off after login
 RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
+
+ENV NOTVISIBLE "in users profile"
+RUN echo "export VISIBLE=now" >> /etc/profile
+
+# Set environment variables.
+ENV HOME /root
 
 # Install OpenJDK-8
 RUN \
@@ -68,6 +80,7 @@ RUN mkdir -p /opt/data/apps/tmp
 RUN mkdir -p /opt/data/apps/dfs/name
 RUN mkdir -p /opt/data/apps/dfs/data
 
+ENV PATH $PATH:${HADOOP_HOME}/sbin/
 
 RUN ssh-keygen -f /root/.ssh/id_rsa -t rsa -N ''
 
@@ -83,5 +96,4 @@ EXPOSE 8030 8031 8032 8033 8040 8042 8088
 # Expose port 22
 EXPOSE 22
 
-
-
+CMD ["/usr/sbin/sshd", "-D"]
