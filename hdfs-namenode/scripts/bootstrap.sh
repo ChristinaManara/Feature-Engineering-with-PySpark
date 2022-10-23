@@ -4,7 +4,7 @@
 service ssh restart
 
 # Setup password less ssh
-sshpass -p screencast ssh-copy-id -i ~/.ssh/id_rsa.pub root@localhost
+sshpass -p screencast ssh-copy-id root@localhost
 
 export HOSTNAME=`hostname`
 sed -i "s#localhost#$HOSTNAME#g" /opt/hadoop-3.3.4/etc/hadoop/core-site.xml
@@ -16,18 +16,19 @@ export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
 # Add bin/ directory of Hadoop to PATH
 export PATH=$PATH:$HADOOP_HOME/bin
 
+
 # Format the NameNode data directory
 hdfs namenode -format -force
 
 # Start HDFS services
-start-dfs.sh
+start-all.sh
 
 # Wait for HDFS services to be up and running
-sleep 100
+#sleep 100
 
 # Create a tmp directory and make it accessible to everyone
 hadoop fs -mkdir -p /tmp
-hadoop fs -chmod -R 777 /tmp
+hadoop fs -chmod -R 755 /tmp
 
 # Run in daemon mode, don't exit
 while true; do

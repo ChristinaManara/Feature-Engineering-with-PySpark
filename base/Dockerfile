@@ -18,6 +18,7 @@ RUN mkdir /var/run/sshd
 RUN echo 'root:screencast' | chpasswd
 RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 RUN sed -i 's/#   StrictHostKeyChecking ask/StrictHostKeyChecking no/' /etc/ssh/ssh_config
+#RUN ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no
 
 # SSH login fix. Otherwise user is kicked off after login
 RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
@@ -96,4 +97,4 @@ EXPOSE 22
 #Other ports
 EXPOSE 49707 2122
 
-#CMD ["/usr/sbin/sshd", "-D"]9870:9870
+CMD ["/usr/sbin/sshd", "-D"]
