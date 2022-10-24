@@ -12,8 +12,8 @@ services:
       # HDFS port
       - "9000:9000"
     # Adjust according to the resources available on host machine
-    # cpu_shares: 3000
-    # mem_limit: 2g
+    cpu_shares: 3000
+    mem_limit: 2g
     stdin_open: true
     tty: true
 
@@ -27,8 +27,42 @@ services:
       - hdfs-namenode
     environment:
       # NAMENODE_HOSTNAME is the hostname of the container running Namenode service
-      #- NAMENODE_HOSTNAME=hdfs-namenode-host
-      SERVICE_PRECONDITION: "namenode:9870"
+      - NAMENODE_HOSTNAME=hdfs-namenode-host
+      #SERVICE_PRECONDITION: "namenode:9870"
+    #Adjust according to the resources available on host machine
+    cpu_shares: 3000
+    mem_limit: 2g
+    
+  # Container that runs Spark Master and Worker services
+  spark-master:
+    image: spark-master
+    hostname: spark-master-host
+    links:
+      - hdfs-namenode
+    ports:
+      # Spark master WebUI port
+      - "8080:8080"
+      # Spark master job submission port
+      - "7077:7077"
+    environment:
+      # NAMENODE_HOSTNAME is the hostname of the container running Namenode service
+      - NAMENODE_HOSTNAME=hdfs-namenode-host
     # Adjust according to the resources available on host machine
-    # cpu_shares: 3000
-    # mem_limit: 2g
+    cpu_shares: 3000
+    mem_limit: 2g
+
+  # Container that runs Spark Worker service
+  spark-slave:
+    image: spark-slave
+    hostname: spark-slave-host
+    links:
+      - hdfs-namenode
+      - spark-master
+    environment:
+      # NAMENODE_HOSTNAME is the hostname of the container running Namenode service
+      - NAMENODE_HOSTNAME=hdfs-namenode-host
+      # MASTER_HOSTNAME is the hostname of the container running Spark master service
+      - MASTER_HOSTNAME=spark-master-host
+    # Adjust according to the resources available on host machine
+    cpu_shares: 3000
+    mem_limit: 2g

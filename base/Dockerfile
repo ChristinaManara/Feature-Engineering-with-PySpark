@@ -62,6 +62,9 @@ RUN export JAVA_HOME
 # Download latest Hadoop package
 ADD https://archive.apache.org/dist/hadoop/common/hadoop-3.3.4/hadoop-3.3.4.tar.gz  /tmp/
 
+# Download Spark package
+ADD https://archive.apache.org/dist/spark/spark-3.3.0/spark-3.3.0-bin-hadoop3.tgz /tmp/
+
 # Create /opt directory
 RUN mkdir -p /opt/
 
@@ -83,7 +86,14 @@ RUN mkdir -p /opt/data/apps/tmp
 RUN mkdir -p /opt/data/apps/dfs/name
 RUN mkdir -p /opt/data/apps/dfs/data
 
-ENV PATH $PATH:${HADOOP_HOME}/sbin/
+# Unpack spark into /opt and set SPARK_HOME
+RUN tar -xzf /tmp/spark-3.3.0-bin-hadoop3.tgz -C /opt/
+ENV SPARK_HOME /opt/spark-3.3.0-bin-hadoop3
+
+ENV PATH $PATH:${HADOOP_HOME}/sbin/:${HADOOP_HOME}/bin:${SPARK_HOME}/sbin/:${SPARK_HOME}/bin
+
+# ENV PATH $PATH:${HADOOP_HOME}/sbin/
+
 
 #RUN ssh-keygen -q -t rsa -N '' -f /id_rsa
 #RUN ssh-keygen -f /root/.ssh/id_rsa -t rsa -N ''
