@@ -3,15 +3,17 @@ services:
   # Container that runs HDFS NameNode and DataNode services
   hdfs-namenode:
     image: hdfs-namenode
+    container_name: namenode
+    restart: always
     hostname: hdfs-namenode-host
     ports:
-      # HDFS port
-      - "9000:9000"
       # HDFS NameNode WebUI
       - "9870:9870"
+      # HDFS port
+      - "9000:9000"
     # Adjust according to the resources available on host machine
-    cpu_shares: 3000
-    mem_limit: 2g
+    # cpu_shares: 3000
+    # mem_limit: 2g
     stdin_open: true
     tty: true
 
@@ -19,11 +21,14 @@ services:
   hdfs-datanode:
     image: hdfs-datanode
     hostname: hdfs-datanode-host
+    container_name: datanode
+    restart: always
     links:
       - hdfs-namenode
     environment:
       # NAMENODE_HOSTNAME is the hostname of the container running Namenode service
-      - NAMENODE_HOSTNAME=hdfs-namenode-host
+      #- NAMENODE_HOSTNAME=hdfs-namenode-host
+      SERVICE_PRECONDITION: "namenode:9870"
     # Adjust according to the resources available on host machine
-    cpu_shares: 3000
-    mem_limit: 2g
+    # cpu_shares: 3000
+    # mem_limit: 2g

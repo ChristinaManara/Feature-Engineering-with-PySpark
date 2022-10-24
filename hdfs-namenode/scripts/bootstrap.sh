@@ -21,10 +21,11 @@ export PATH=$PATH:$HADOOP_HOME/bin
 hdfs namenode -format -force
 
 # Start HDFS services
-start-all.sh
+start-dfs.sh
+start-yarn.sh
 
 # Wait for HDFS services to be up and running
-#sleep 100
+sleep 5
 
 # Create a tmp directory and make it accessible to everyone
 hadoop fs -mkdir -p /tmp

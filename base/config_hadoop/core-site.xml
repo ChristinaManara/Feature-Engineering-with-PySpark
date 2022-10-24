@@ -31,9 +31,14 @@
   <value>/opt/data/apps/dfs/data</value>
 </property>
 
-<property>
+<!-- <property>
   <name>fs.default.name</name>
   <value>hdfs://localhost:9000</value>
+</property> -->
+
+<property>
+  <name>fs.default.name</name>
+  <value>hdfs://127.0.0.1:9000</value>
 </property>
 
 <property>
