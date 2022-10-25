@@ -1,0 +1,3 @@
+#!/bin/bash
+docker exec -it $(docker ps | grep feature-engineering-with-pyspark-spark-master-1 | awk '{print $1}') /bin/bash -c \
+"spark-submit --class org.apache.spark.examples.JavaSparkPi --master spark://spark-master-host:7077 /opt/spark-3.3.0-bin-hadoop3/examples/jars/spark-examples_2.12-3.3.0.jar"
