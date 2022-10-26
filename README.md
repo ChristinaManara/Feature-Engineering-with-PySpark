@@ -1,6 +1,6 @@
 # Feature-Engineering-with-PySpark
 
-# Hadoop Single Node Cluster on Docker.
+## Hadoop Single Node Cluster on Docker.
 
 The objective of this assignment is to implement a distributed system that handles csv data, applies transformations and feature engineering and persists them in parquet format. The system should consist of the
 following two modules:
