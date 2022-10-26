@@ -63,7 +63,7 @@ bash run.sh
 ```
 
 ![alt text](https://github.com/ChristinaManara/Feature-Engineering-with-PySpark/blob/main/images/terminal.png)
-<img src="(https://github.com/ChristinaManara/Feature-Engineering-with-PySpark/blob/main/images/terminal.png)" width="60">
+<img src="(https://github.com/ChristinaManara/Feature-Engineering-with-PySpark/blob/main/images/terminal.png)" width="30">
 
 ## Help
 
