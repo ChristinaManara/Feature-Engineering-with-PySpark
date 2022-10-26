@@ -69,7 +69,7 @@ bash run.sh
 
 Any advise for common problems or issues.
 ```
-command to run if program contains helper info
+Try to restart the containers. If WebUI of Hadoop or Spark is not showing at first place, just wait a few seconds in order to finish the deployment.
 ```
 
 ## Authors
