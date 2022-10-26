@@ -5,8 +5,8 @@
 The objective of this assignment is to implement a distributed system that handles csv data, applies transformations and feature engineering and persists them in parquet format. The system should consist of the
 following two modules:
 
- Markup : 1. A distributed file system (Hadoop cluster) where the csv dataset-file will be stored and the resulting parquet files will be persisted.
-          2. A spark cluster that will run on top of Hadoop and will process the csv data in order to generate new features that will be stored in parquet files.
+1. A distributed file system (Hadoop cluster) where the csv dataset-file will be stored and the resulting parquet files will be persisted.
+2. A spark cluster that will run on top of Hadoop and will process the csv data in order to generate new features that will be stored in parquet files.
 
 ## Description
 
