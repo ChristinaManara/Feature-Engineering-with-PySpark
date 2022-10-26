@@ -33,6 +33,8 @@ hadoop fs -mkdir -p /tmp
 hadoop fs -chmod -R 777 /tmp
 hadoop fs -put /opt/testing/feature-engineering/cvas_data.csv hdfs://localhost:9000/tmp/.
 hadoop fs -chmod -R 777 /tmp/cvas_data.csv
+hadoop fs -put /opt/testing/testing/WordCount.txt hdfs://localhost:9000/tmp/.
+hadoop fs -chmod -R 777 /tmp/WordCount.txt
 
 # Run in daemon mode, don't exit
 while true; do
