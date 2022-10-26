@@ -25,7 +25,7 @@ following two modules:
 
 * Download this repository with the command:
 ```
- git clone 
+ git clone https://github.com/ChristinaManara/Feature-Engineering-with-PySpark.git
 ```
 
 * Navigate to the downloaded repository with the command: 
@@ -33,13 +33,27 @@ following two modules:
 cd pathTo/Feature-Engineering-with-PySpark
 ```
 
-* Step-by-step bullets
+* Build containers with the command:
 ```
 bash build_all.sh
 ```
 
+* Deploy an HDFS-Spark cluster with the command:
+```
+docker-compose up -d
+```
 
+You can submit a Word Count or Feature Engineering job with:
+* Navigate to apps folder with the command:  
+```
+cd apps
+```
+* Run the command and a menu will be shown:
+ ```
+bash run.sh
+```
 
+![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
 
 ## Help
 
