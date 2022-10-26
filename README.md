@@ -75,6 +75,6 @@ ex. Christina Manara (christinamanara2@gmail.com)
 ## Acknowledgments
 
 Inspiration, code snippets, etc.
-* [FeatureEngineering]([https://github.com/matiassingers/awesome-readme](https://spark.apache.org/docs/1.4.0/ml-features.html))
-* [Spark]([https://gist.github.com/PurpleBooth/109311bb0361f32d87a2](https://spark.apache.org/releases/spark-release-3-3-0.html))
-* [Hadoop]([https://github.com/dbader/readme-template](https://hadoop.apache.org/release/3.3.4.html))
+* [FeatureEngineering](https://spark.apache.org/docs/1.4.0/ml-features.html)
+* [Spark](https://spark.apache.org/releases/spark-release-3-3-0.html)
+* [Hadoop](https://hadoop.apache.org/release/3.3.4.html)
