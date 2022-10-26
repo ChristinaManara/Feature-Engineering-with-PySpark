@@ -62,7 +62,7 @@ cd apps
 bash run.sh
 ```
 
-![alt text](https://github.com/ChristinaManara/Feature-Engineering-with-PySpark/blob/main/images/terminal.png =250x250)
+![](https://github.com/ChristinaManara/Feature-Engineering-with-PySpark/blob/main/images/terminal.png | width=100)
 
 ## Help
 
