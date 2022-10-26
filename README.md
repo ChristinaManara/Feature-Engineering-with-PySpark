@@ -41,6 +41,14 @@ bash build_all.sh
 ```
 docker-compose up -d
 ```
+Web UI of Hadoop: http://localhost:9870
+
+It should be like: 
+![alt text](https://github.com/ChristinaManara/Feature-Engineering-with-PySpark/blob/main/images/hadoop.png)
+
+Web UI of Spark: http://localhost:7077
+![alt text](https://github.com/ChristinaManara/Feature-Engineering-with-PySpark/blob/main/images/spark.png)
+
 
 You can submit a Word Count or Feature Engineering job with:
 * Navigate to apps folder with the command:  
