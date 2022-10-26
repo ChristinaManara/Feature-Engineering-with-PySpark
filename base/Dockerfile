@@ -10,7 +10,7 @@ RUN \
     apt-get -y upgrade && \
     apt-get install -y build-essential && \
     apt-get install -y software-properties-common && \
-    apt-get install -y byobu curl git htop man unzip vim wget && \
+    apt-get install -y byobu curl git htop man unzip vim wget python3 python3-pip python3-numpy && \
     apt-get install -y openssh-server sshpass && \
     rm -rf /var/lib/apt/lists/*
 
