@@ -19,7 +19,7 @@ export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
 export PATH=$PATH:$HADOOP_HOME/bin
 # hadoop-daemon.sh start datanode
 hdfs --daemon start datanode
-
+#hdfs --deamon yarn-deamon.sh 
 # Run in daemon mode, don't exit
 while true; do
   sleep 100;

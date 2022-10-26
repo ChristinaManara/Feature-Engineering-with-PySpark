@@ -7,7 +7,7 @@
     </property>
     <property>
         <name>dfs.datanode.data.dir</name>
-        <value>file:///opt/data/apps/dfs/name</value>
+        <value>file:///opt/data/apps/dfs/data</value>
         <description>DataNode directory</description>
     </property>
     <property>

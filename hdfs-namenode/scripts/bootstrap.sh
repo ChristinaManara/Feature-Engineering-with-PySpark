@@ -29,7 +29,7 @@ sleep 5
 
 # Create a tmp directory and make it accessible to everyone
 hadoop fs -mkdir -p /tmp
-hadoop fs -chmod -R 755 /tmp
+hadoop fs -chmod -R 777 /tmp
 
 # Run in daemon mode, don't exit
 while true; do
