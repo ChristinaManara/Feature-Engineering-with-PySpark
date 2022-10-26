@@ -46,7 +46,9 @@ Web UI of Hadoop: http://localhost:9870
 It should be like: 
 ![alt text](https://github.com/ChristinaManara/Feature-Engineering-with-PySpark/blob/main/images/hadoop.png)
 
-Web UI of Spark: http://localhost:7077
+Web UI of Spark: http://localhost:8080
+
+It should be like: 
 ![alt text](https://github.com/ChristinaManara/Feature-Engineering-with-PySpark/blob/main/images/spark.png)
 
 
@@ -60,7 +62,7 @@ cd apps
 bash run.sh
 ```
 
-![alt text](https://github.com/ChristinaManara/Feature-Engineering-with-PySpark/blob/main/images/terminal.png)
+![alt text](https://github.com/ChristinaManara/Feature-Engineering-with-PySpark/blob/main/images/terminal.png =250x250)
 
 ## Help
 
