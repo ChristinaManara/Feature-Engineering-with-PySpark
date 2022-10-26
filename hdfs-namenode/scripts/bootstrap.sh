@@ -11,11 +11,12 @@ sed -i "s#localhost#$HOSTNAME#g" /opt/hadoop-3.3.4/etc/hadoop/core-site.xml
 
 # Set HADOOP_HOME
 export HADOOP_HOME=/opt/hadoop-3.3.4
+
 # Set JAVA_HOME
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
+
 # Add bin/ directory of Hadoop to PATH
 export PATH=$PATH:$HADOOP_HOME/bin
-
 
 # Format the NameNode data directory
 hdfs namenode -format -force
@@ -32,6 +33,7 @@ hadoop fs -mkdir -p /tmp
 hadoop fs -chmod -R 777 /tmp
 hadoop fs -put /opt/testing/feature-engineering/cvas_data.csv hdfs://localhost:9000/tmp/.
 hadoop fs -chmod -R 777 /tmp/cvas_data.csv
+
 # Run in daemon mode, don't exit
 while true; do
   sleep 100;

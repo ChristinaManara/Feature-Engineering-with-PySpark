@@ -29,15 +29,6 @@ RUN adduser hdoop && \
 # # SSH login fix. Otherwise user is kicked off after login
 # RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
 
-# RUN echo 'root:root' | chpasswd
-# RUN sed -i 's/#\?PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
-
-# # SSH login fix. Otherwise user is kicked off after login
-# RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
-
-# ENV NOTVISIBLE "in users profile"
-# RUN echo "export VISIBLE=now" >> /etc/profile
-
 # Set environment variables.
 ENV HOME /root
 
@@ -91,12 +82,6 @@ RUN tar -xzf /tmp/spark-3.3.0-bin-hadoop3.tgz -C /opt/
 ENV SPARK_HOME /opt/spark-3.3.0-bin-hadoop3
 
 ENV PATH $PATH:${HADOOP_HOME}/sbin/:${HADOOP_HOME}/bin:${SPARK_HOME}/sbin/:${SPARK_HOME}/bin
-
-# ENV PATH $PATH:${HADOOP_HOME}/sbin/
-
-
-#RUN ssh-keygen -q -t rsa -N '' -f /id_rsa
-#RUN ssh-keygen -f /root/.ssh/id_rsa -t rsa -N ''
 
 # Spark ports
 EXPOSE 7077 6066 8080 8081
