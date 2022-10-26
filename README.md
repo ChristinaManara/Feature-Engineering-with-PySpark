@@ -2,35 +2,44 @@
 
 ## Hadoop Single Node Cluster on Docker.
 
+## Description
+
 The objective of this assignment is to implement a distributed system that handles csv data, applies transformations and feature engineering and persists them in parquet format. The system should consist of the
 following two modules:
 
 1. A distributed file system (Hadoop cluster) where the csv dataset-file will be stored and the resulting parquet files will be persisted.
 2. A spark cluster that will run on top of Hadoop and will process the csv data in order to generate new features that will be stored in parquet files.
 
-## Description
-
-An in-depth paragraph about your project and overview of use.
-
 ## Getting Started
 
 ### Dependencies
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
+* Docker has to be installed. 
 
 ### Installing
 
-* How/where to download your program
+* This is a private git for personal purposes. 
 * Any modifications needed to be made to files/folders
 
 ### Executing program
 
-* How to run the program
+* Download this repository with the command:
+```
+ git clone 
+```
+
+* Navigate to the downloaded repository with the command: 
+```
+cd pathTo/Feature-Engineering-with-PySpark
+```
+
 * Step-by-step bullets
 ```
-code blocks for commands
+bash build_all.sh
 ```
+
+
+
 
 ## Help
 
