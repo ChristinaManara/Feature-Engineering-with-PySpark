@@ -53,7 +53,7 @@ cd apps
 bash run.sh
 ```
 
-![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
+![alt text](https://github.com/ChristinaManara/Feature-Engineering-with-PySpark/blob/main/images/terminal.png)
 
 ## Help
 
