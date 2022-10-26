@@ -98,6 +98,9 @@ ENV PATH $PATH:${HADOOP_HOME}/sbin/:${HADOOP_HOME}/bin:${SPARK_HOME}/sbin/:${SPA
 #RUN ssh-keygen -q -t rsa -N '' -f /id_rsa
 #RUN ssh-keygen -f /root/.ssh/id_rsa -t rsa -N ''
 
+# Spark ports
+EXPOSE 7077 6066 8080 8081
+
 # Hdfs ports
 EXPOSE 50010 50020 50070 50075 50090 8020 9000 9870
 
